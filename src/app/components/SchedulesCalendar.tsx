@@ -158,17 +158,16 @@ export const SchedulesCalendar = () => {
         {hours.map((hour, hourIndex) => (
           <React.Fragment key={hourIndex}>
             {days.map((_, dayIndex) => (
-              <div
+              <button
                 key={`${dayIndex}-${hourIndex}`}
-                className={`border border-gray-300 text-black p-2 cursor-pointer hover:border-red ${
-                  hour.disabled
-                    ? "bg-gray-200"
-                    : scheduleDate?.day === dayIndex &&
-                      scheduleDate?.hour.start === hour.start &&
-                      scheduleDate?.hour.end === hour.end
+                className={`border border-gray-300 text-black p-2 cursor-pointer hover:border-red disabled:bg-gray-200 ${
+                  scheduleDate?.day === dayIndex &&
+                  scheduleDate?.hour.start === hour.start &&
+                  scheduleDate?.hour.end === hour.end
                     ? "bg-blue-500 text-white"
                     : "bg-white"
                 }`}
+                disabled={hour.disabled}
                 onClick={
                   hour.disabled
                     ? undefined
@@ -180,7 +179,7 @@ export const SchedulesCalendar = () => {
                 ) : (
                   <span>{hour.label}</span>
                 )}
-              </div>
+              </button>
             ))}
           </React.Fragment>
         ))}
